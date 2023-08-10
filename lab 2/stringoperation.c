@@ -1,3 +1,16 @@
+/*Write a program to perform following string operations without using string handling
+functions:
+a.) length of the string
+b.) string concatenation
+c.) string comparison
+d.) to insert a sub string
+e.) to delete a substring*/
+#include<stdio.h>
+int length(char []);
+void concate(char [], char []);
+int compare(char [], char []);
+void insert(char [],char [],int );
+void deletesub(char [],char []);
 int main()
 {
     int n=0,p;
@@ -19,7 +32,8 @@ int main()
         printf("Enter the second string : ");
         scanf("%s",s2);
         concate(s1,s2);
-        printf("concatenation string is %s ",s1);
+        printf("concatenation string is %s \n",s1);
+        main();
         break;
     case 3:
         printf("Enter the first string : ");
@@ -30,6 +44,7 @@ int main()
             printf("Equal strings.\n");
         else
             printf("Unequal strings.\n");
+        main();
         break;
     case 4:
         printf("Enter the string : ");
@@ -39,6 +54,8 @@ int main()
         printf("Enter the position to insert : ");
         scanf("%d", &p);
         insert(s1,s2,p);
+        printf("the string is %s\n",s1);
+        main();
         break;
     case 5:
         printf("Enter the string : ");
@@ -46,7 +63,8 @@ int main()
         printf("Enter the sub string to be deleted : ");
         scanf("%s",s2);
         deletesub(s1,s2);
-        printf("%s",s1);
+        printf("the string is %s\n",s1);
+        main();
         break;
     case 6:
         exit(0);
@@ -98,23 +116,16 @@ void insert(char s1[], char s2[], int p)
 {
     int l1 = length(s1);
     int l2 = length(s2);
-    
-    // Check if the position is valid
     if (p < 0 || p > l1) {
         printf("Invalid position to insert!\n");
         return;
     }
-
-    // Move characters to the right to make space for the inserted substring
     for (int i = l1; i >= p; i--) {
         s1[i + l2] = s1[i];
     }
-
-    // Insert the substring at the specified position
     for (int i = 0; i < l2; i++) {
         s1[p + i] = s2[i];
     }
-
     s1[l1 + l2] = '\0';
 }
 
