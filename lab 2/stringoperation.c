@@ -115,7 +115,6 @@ void insert(char s1[], char s2[], int p)
         s1[p + i] = s2[i];
     }
 
-    // Null-terminate the modified string
     s1[l1 + l2] = '\0';
 }
 
