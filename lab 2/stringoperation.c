@@ -54,3 +54,94 @@ int main()
         printf("Invalid option!\n");
     }
 }
+
+int length(char s1[])
+{
+   int c = 0;
+   while (s1[c] != '\0')
+      c++;
+
+   return c;
+}
+void concate(char s1[], char s2[])
+{
+   int c, d;
+   c = 0;
+   while (s1[c] != '\0') {
+      c++;
+   }
+   d = 0;
+   while (s2[d] != '\0') {
+      s1[c] = s2[d];
+      d++;
+      c++;
+   }
+
+   s1[c] = '\0';
+}
+int compare(char s1[], char s2[])
+{
+   int c = 0;
+
+   while (s1[c] == s2[c]) {
+      if (s1[c] == '\0' || s2[c] == '\0')
+         break;
+      c++;
+   }
+
+   if (s1[c] == '\0' && s2[c] == '\0')
+      return 0;
+   else
+      return -1;
+}
+void insert(char s1[], char s2[], int p)
+{
+    int l1 = length(s1);
+    int l2 = length(s2);
+    
+    // Check if the position is valid
+    if (p < 0 || p > l1) {
+        printf("Invalid position to insert!\n");
+        return;
+    }
+
+    // Move characters to the right to make space for the inserted substring
+    for (int i = l1; i >= p; i--) {
+        s1[i + l2] = s1[i];
+    }
+
+    // Insert the substring at the specified position
+    for (int i = 0; i < l2; i++) {
+        s1[p + i] = s2[i];
+    }
+
+    // Null-terminate the modified string
+    s1[l1 + l2] = '\0';
+}
+
+void deletesub(char s1[],char s2[])
+{
+    int l1,l2,temp,i,j,chk=0;
+    l1=length(s1);
+    l2=length(s2);
+    for(i=0; i<l1; i++)
+    {
+      temp = i;
+      for(j=0; j<l2; j++)
+      {
+         if(s1[i]==s2[j])
+            i++;
+      }
+      chk = i-temp;
+      if(chk==l2)
+      {
+         i = temp;
+         for(j=i; j<(l1-l2); j++)
+            s1[j] = s1[j+l2];
+         l1 = l1-l2;
+         s1[j]='\0';
+      }
+   }
+
+    return 0;
+}
