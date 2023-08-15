@@ -15,16 +15,17 @@ int main()
 {
     int n=0,p;
     char s1[20],s2[20];
+    do{
     printf(" 1.length of the string \n 2.string concatenation \n 3.string comparison\n 4.to insert a sub string\n 5.to delete a substring\n 6.exit \n");
     printf("Enter your option : ");
     scanf("%d",&n);
+    
     switch(n)
     {
     case 1:
         printf("Enter the string : ");
         scanf("%s",s1);
         printf("length of %s is %d\n",s1,length(s1));
-        main();
         break;
     case 2:
         printf("Enter the first string : ");
@@ -33,7 +34,6 @@ int main()
         scanf("%s",s2);
         concate(s1,s2);
         printf("concatenation string is %s \n",s1);
-        main();
         break;
     case 3:
         printf("Enter the first string : ");
@@ -44,7 +44,6 @@ int main()
             printf("Equal strings.\n");
         else
             printf("Unequal strings.\n");
-        main();
         break;
     case 4:
         printf("Enter the string : ");
@@ -55,7 +54,6 @@ int main()
         scanf("%d", &p);
         insert(s1,s2,p);
         printf("the string is %s\n",s1);
-        main();
         break;
     case 5:
         printf("Enter the string : ");
@@ -64,13 +62,14 @@ int main()
         scanf("%s",s2);
         deletesub(s1,s2);
         printf("the string is %s\n",s1);
-        main();
         break;
     case 6:
         exit(0);
     default:
         printf("Invalid option!\n");
     }
+    }
+    while(1);
 }
 
 int length(char s1[])
