@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 #define MAX_SIZE 100
-// Structure to represent the stack
 int items[MAX_SIZE];
  int top=-1;
 
