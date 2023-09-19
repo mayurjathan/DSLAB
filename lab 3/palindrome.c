@@ -1,48 +1,38 @@
+/*Write a C program to check whether a given string is a palindrome or not using stacks*/
 #include<stdio.h>
-#define MAX 100
-
-int top = -1;
-char stack[MAX];
-
-void AddStringToStack(char s[100])
+#define max 50
+int top=-1;
+char stack[max];
+void addstring(char s[100])//adding string to stack
 {
-    top = 0;
-
-    while(s[top]!='\0' && top < MAX-1)
+    top=0;
+    while(s[top]!='\0'&&top<max-1)
     {
-        stack[top] = s[top];
+        stack[top]=s[top];
         top++;
     }
-
-    stack[top] = '\0';
+    stack[top]='\0';
 }
-
-int main()
+void main()
 {
     char s[100];
     int flag=1;
-    printf("Enter string to check:\n");
+    printf("Enter the string : ");
     scanf("%s",s);
-
-    AddStringToStack(s);
-
-    int i=0;
+    addstring(s);
+    int i;
     top--;
     while(top>=0)
     {
-        printf("%c %c\n",stack[top],s[i]);
-        if(stack[top] != s[i])
+        if(stack[top]!=s[i])
         {
-            printf("Not a Pallindrome\n");
+            printf("Not a Palindrome");
             flag=0;
             break;
         }
         i++;
         top--;
     }
-
-    if(flag==1) printf("Word is a pallindrome\n");
-
-
-    return 0;
+    if(flag==1)
+    printf("Its a Palindrome");
 }

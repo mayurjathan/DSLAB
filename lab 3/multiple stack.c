@@ -1,51 +1,74 @@
-/* Write a C program to implement Multiple stacks using arrays.*/
 #include<stdio.h>
-#define m 12
-#define n 3
-typedef struct
+#define SIZE 100
+#define TOP_LEN 4
+
+char stack[SIZE * TOP_LEN];
+
+int top[TOP_LEN];
+
+void InitTop()
 {
-    int key;
-}mstack;
-mstack s[10];
-int top[5],b[5];
+    for(int i=0; i<TOP_LEN; i++)
+    {
+        top[i] = -1 + (SIZE*i);
+    }
+}
+
+void Push(int stackInd, int n)
+{
+    top[stackInd]++;
+    if(top[stackInd] >= SIZE * (stackInd+1))
+    {
+        printf("Stack out of bound");
+        return;
+    }
+
+    stack[top[stackInd]] = n;
+}
+
+char Pop(int stackInd)
+{
+    if(top[stackInd]<= -1 + (SIZE*stackInd))
+    {
+        printf("Stack empty");
+        return "9999999999";
+    }
+    return (stack[top[stackInd]--]);
+}
+
+void Disp(int stackInd)
+{
+    int i = top[stackInd];
+
+    while(i> -1 + (SIZE*stackInd))
+    {
+        printf("%d ", stack[i]);
+        i--;
+    }
+    printf("\n");
+}
+
 int main()
 {
-    int i;
-    for(i=0;i<n;i++)
-    top[i]=b[i]=(m/n)*i-1;
-    b[i]=m-1;
-    push()
-}
-void push(int i, mstack item)
-{
-    if(top[i]==b[i+1])
+    InitTop();
+    for(int i=0; i<TOP_LEN;i++)
     {
+        printf("top = %d \n",top[i]);
+    }
 
-    }
-    else
-        s[++top[i]]=item;
-}
-mstack pop(int i)
-{
-    mstack temp;
-    if(top[i]==b[i])
-    {
-        printf("Empty");
-        temp.key=-9999;
-    }
-    else
-        return s[top[i]--];
-}
-void display(int i)
-{
-    if(top[i]==b[i])
-    {
-        printf("Stack is Empty\n");
-    }
-    else
-    {
-        int j;
-        for(j=b[i]+1;j<=top[i];j++)
-        printf("%d",s[j].key);
-    }
+  //Sample inputs need to change it to scanf statements
+    Push(0,1);
+    Push(0,2);
+    Push(1,3);
+    Push(1,4);
+    Push(2,5);
+    Push(2,6);
+    Push(3,7);
+    Push(3,8);
+
+    Disp(0);
+    Disp(1);
+    Disp(2);
+    Disp(3);
+    return 0;
 }

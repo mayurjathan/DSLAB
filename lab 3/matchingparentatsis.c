@@ -28,11 +28,7 @@ int main()
 
     printf("Enter a string:\n");
     scanf("%s",s);
-
-
-
     int i=0;
-
     while(s[i]!='\0')
     {
         char c = s[i];
