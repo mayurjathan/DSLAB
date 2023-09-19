@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <malloc.h>
-#define MAX 10
+#define MAX 411
 int queue[MAX];
 int front = -1, rear = -1;
 void insert(void);

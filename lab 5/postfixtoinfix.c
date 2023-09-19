@@ -67,7 +67,7 @@ int main()
         else
         {
             char temp[SIZE];
-            int a,b;
+            char *a,*b;
             b = pop();
             a = pop();
             strcpy(temp,"(");
