@@ -3,7 +3,6 @@ functions to (i) Add (ii) To find difference between two objects of class time.
 Functions take two-time objects as argument and return time object. Also write the
 display and read function.*/
 #include <stdio.h>
-d
 struct Time {
     int hour;
     int min;
