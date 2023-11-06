@@ -54,7 +54,6 @@ void insertAtStart(int val)
     temp->next = first;
     first = temp;
 }
-
 void del(int val)
 {
     node* cur;
@@ -132,42 +131,51 @@ void sort()
     }
 }
 
-void insertBefore(int src, int val)
+void insertBefore(int src, int val)// src = position and val = value to be inserted
 {
-    node* cur = first;
-    node* prev = first;
+    node* cur;
+    node* prev;
     node* temp = (node*) malloc(sizeof(node));
-    temp->data = val;
-
-    if(first == NULL) return;
-
-    for(;cur->next != NULL && cur->data != src; prev = cur, cur = cur->next);
-
-    if(cur->next!=NULL || src == cur->data)
+    if(first->data == src)
     {
-        prev->next = temp;
-        temp->next = cur;
-
+      insertAtStart(val);
+      return;
+    }
+    for(cur=first,prev=first;cur->next != NULL; prev = cur, cur = cur->next)
+    {
+        if(cur->data==src)
+        {
+          temp->data = val;
+          prev->next = temp;
+          temp->next = cur;
+        }
     }
 }
 
 void insertAfter(int src, int val)
 {
-    node* cur = first;
+    node* cur;
     node* temp = (node*) malloc(sizeof(node));
-    temp->data = val;
+    node* curNext;
 
-    if(first == NULL) return;
+    if(first->next == NULL)insertAtEnd(val);
 
-    for(;cur->next != NULL && cur->data != src; cur = cur->next);
-
-    if(cur->next!=NULL || src == cur)
+    for(cur=first;cur!= NULL; cur = cur->next)
     {
-        node* curNext;
+      if(cur->data==src)
+      {
         curNext = cur->next;
-        cur->next = temp;
-        temp->next = curNext;
-
+        if(cur->next==NULL)
+        {
+            insertAtEnd(val);
+        }
+        else
+        {
+            temp->data = val;
+            cur->next = temp;
+            temp->next = curNext;
+        }
+      }
     }
 }
 void sortedInsert(int val)
@@ -210,7 +218,7 @@ int main()
         scanf("%d",&e);
         printf("Enter the element before which to be inserted : ");
         scanf("%d",&p);
-        insertBefore(p,e);
+        insertBefore(p,e);//takes the element and the position to be inserted
         display();
         break;
     case 2:
