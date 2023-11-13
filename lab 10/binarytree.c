@@ -1,3 +1,11 @@
+// // Write user defined functions to perform the following operations on binary trees.
+// i.) In order traversal (Iterative)
+// ii.) Post order traversal (Iterative)
+// iii.) Preorder traversal(Iterative)
+// iv.) Print the parent of the given element
+// v.) Print the depth of the tree
+// vi.) Print the ancestors of a given element
+// vii.) Count the number of leaf nodes in a binary tree
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>

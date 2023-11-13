@@ -1,3 +1,6 @@
+// Write a menu driven program to:
+// i) Insert an element into a doubly linked circular list
+// ii) Delete an element from a doubly linked circular list.
 #include <stdio.h>
 #include <stdlib.h>
 

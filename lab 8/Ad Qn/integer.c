@@ -1,45 +1,92 @@
+//. Write a program to implement addition of two long positive integer numbers.
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
-// Function to add two long positive integers represented as strings
-char* addLongIntegers(const char* num1, const char* num2) {
-    int maxLen = (strlen(num1) > strlen(num2)) ? strlen(num1) : strlen(num2);
-    char result[maxLen + 2];  // +1 for possible carry and +1 for null terminator
-    int carry = 0;
-    int i, j, k;
+// Define the structure for a doubly linked list node
+struct Node {
+    int data;
+    struct Node* prev;
+    struct Node* next;
+};
 
-    for (i = strlen(num1) - 1, j = strlen(num2) - 1, k = maxLen; k >= 0; i--, j--, k--) {
-        int digit1 = (i >= 0) ? num1[i] - '0' : 0;
-        int digit2 = (j >= 0) ? num2[j] - '0' : 0;
+// Function to create a new doubly linked list node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+    return newNode;
+}
 
-        int sum = digit1 + digit2 + carry;
-        carry = sum / 10;
-        result[k] = (sum % 10) + '0';
-    }
-
-    // If there's a carry after the loop, prepend it to the result
-    if (carry > 0) {
-        result[0] = carry + '0';
-        result[maxLen + 1] = '\0';
+// Function to insert a digit at the front of a doubly linked list
+void insertAtFront(struct Node** head, int data) {
+    struct Node* newNode = createNode(data);
+    if (*head == NULL) {
+        *head = newNode;
     } else {
-        // If there's no carry, adjust the result to exclude any leading zeros
-        memmove(result, result + 1, maxLen + 1);  // Remove leading zero
+        newNode->next = *head;
+        (*head)->prev = newNode;
+        *head = newNode;
+    }
+}
+
+// Function to add two numbers represented by doubly linked lists
+struct Node* addNumbers(struct Node* num1, struct Node* num2) {
+    struct Node* result = NULL;
+    struct Node* current1 = num1;
+    struct Node* current2 = num2;
+    int carry = 0;
+
+    while (current1 || current2 || carry) {
+        int sum = carry;
+        if (current1) {
+            sum += current1->data;
+            current1 = current1->next;
+        }
+        if (current2) {
+            sum += current2->data;
+            current2 = current2->next;
+        }
+
+        carry = sum / 10;
+        sum %= 10;
+        insertAtFront(&result, sum);
     }
 
-    return strdup(result);
+    return result;
+}
+
+// Function to print a doubly linked list
+void printList(struct Node* head) {
+    struct Node* current = head;
+    while (current) {
+        printf("%d", current->data);
+        current = current->next;
+    }
+    printf("\n");
 }
 
 int main() {
-    char num1[1000], num2[1000];
+    // Create two numbers represented as doubly linked lists
+    struct Node* num1 = NULL;
+    struct Node* num2 = NULL;
 
-    printf("Enter the first long positive integer: ");
-    scanf("%s", num1);
+    // Example numbers: 12345 and 6789
+    int number1[] = {1, 2, 3, 5, 6};
+    int number2[] = {5, 7, 8, 9};
 
-    printf("Enter the second long positive integer: ");
-    scanf("%s", num2);
+    for (int i = 0; i < 5; i++) {
+        insertAtFront(&num1, number1[i]);
+    }
 
-    char* result = addLongIntegers(num1, num2);
-    printf("Result: %s\n", result);
+    for (int i = 0; i < 4; i++) {
+        insertAtFront(&num2, number2[i]);
+    }
+
+    // Perform addition and print the result
+    struct Node* result = addNumbers(num1, num2);
+    printf("Result of addition: ");
+    printList(result);
 
     return 0;
 }

@@ -1,3 +1,5 @@
+// Write a program to concatenate two doubly linked lists X1 and X2. After
+// concatenation X1 is a pointer to first node of the resulting lists.
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -1,3 +1,7 @@
+//  Develop a C application to simulate a washing machine renting system using a
+// circular doubly linked list. User books the washing machine for a certain amount of
+// time and soon after the time duration, the washing machine will be handed over to
+// the next person in the queue for use.
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
